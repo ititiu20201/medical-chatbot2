@@ -1,38 +1,22 @@
-import os
+from setuptools import setup, find_packages
 
-def create_project_structure():
-    """Create the initial project directory structure."""
-    
-    # Define the directory structure
-    directories = [
-        'data/raw',
-        'data/processed',
-        'data/models',
-        'src/data',
-        'src/models',
-        'src/utils',
-        'src/training',
-        'src/inference',
-        'tests',
-        'notebooks',
-        'docs',
-        'configs'
+setup(
+    name="medical-chatbot",
+    version="0.1",
+    packages=find_packages(),
+    install_requires=[
+        'torch>=1.9.0',
+        'transformers>=4.18.0',
+        'vncorenlp>=1.0.3',
+        'underthesea>=1.3.3',
+        'numpy>=1.21.0',
+        'pandas>=1.3.0',
+        'scikit-learn>=0.24.2',
+        'tqdm>=4.62.0',
+        'omegaconf>=2.1',
+        'PyYAML>=5.1',
+        'fastapi>=0.68.0',
+        'uvicorn>=0.15.0',
+        'python-dotenv>=0.19.0'
     ]
-    
-    # Create directories
-    for dir_path in directories:
-        os.makedirs(dir_path, exist_ok=True)
-        # Create __init__.py files in Python package directories
-        if dir_path.startswith('src/'):
-            init_file = os.path.join(dir_path, '__init__.py')
-            if not os.path.exists(init_file):
-                open(init_file, 'a').close()
-        # Create .gitkeep files in empty directories
-        else:
-            gitkeep_file = os.path.join(dir_path, '.gitkeep')
-            if not os.path.exists(gitkeep_file):
-                open(gitkeep_file, 'a').close()
-
-if __name__ == "__main__":
-    create_project_structure()
-    print("Project structure created successfully!")
+)
